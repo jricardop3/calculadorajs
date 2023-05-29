@@ -1,5 +1,7 @@
+<!DOCTYPE html>
 <html>
-	<head>
+ <head>
+ <meta charset="utf-8">
 		<title>Calculadora</title>
 
 		<!-- Latest compiled and minified CSS -->
@@ -54,7 +56,7 @@
           <br />
 
           <div class="calculadora">
-            <input type="text" class="form-control resultado" placeholder="0" disabled="disabled" />
+            <input id="resultado" type="text" class="form-control resultado" placeholder="0" disabled="disabled" />
             
             <div class="row">
               <button onclick="calcular('acao', 'c')" type="button" class="btn btn-dark btn-lg clear font-weight-light">C</button>
@@ -72,7 +74,7 @@
             <div class="row">
               <button onclick="calcular('valor', 5)" type="button" class="btn btn-dark btn-lg font-weight-light">5</button>
               <button onclick="calcular('valor', 6)" type="button" class="btn btn-dark btn-lg font-weight-light">6</button>
-              <button onclick="calcular('valor', '+')" type="button" class="btn btn-dark btn-lg font-weight-light">+</button>
+              <button onclick="calcular('acao', '+')" type="button" class="btn btn-dark btn-lg font-weight-light">+</button>
               <button onclick="calcular('valor', 4)" type="button" class="btn btn-dark btn-lg font-weight-light">4</button>
             </div>
 
@@ -84,7 +86,7 @@
             </div>
 
             <div class="row" style="margin-top: -60px">
-              <button onclick="calcular('valor', '0')" type="button" class="btn btn-dark zero btn-lg font-weight-light">0</button>
+              <button onclick="calcular('valor', 0)" type="button" class="btn btn-dark zero btn-lg font-weight-light">0</button>
               <button onclick="calcular('acao', '.')" type="button" class="btn btn-dark btn-lg font-weight-light">.</button>
             </div>
 
@@ -95,7 +97,20 @@
     
     <script>
       function calcular (tipo, valor){
-
+        if (tipo === 'acao'){
+          if (valor === 'c'){
+          document.getElementById('resultado').value = ''
+          }
+          if (valor === '+' ||valor === '-' ||valor === '*' ||valor === '/' ||valor === '.'){
+            document.getElementById('resultado').value += valor
+            
+          }
+          if (valor === '='){
+           var valor_campo = eval(document.getElementById('resultado').value)
+           document.getElementById('resultado').value = valor_campo
+          }
+        } else if (tipo ==='valor')
+        document.getElementById('resultado').value += valor
       }
     </script>
   </body>	
